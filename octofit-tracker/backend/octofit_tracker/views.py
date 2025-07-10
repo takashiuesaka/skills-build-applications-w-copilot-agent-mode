@@ -3,10 +3,21 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 from .models import User, Team, Activity, Leaderboard, Workout
+import os
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = 'http://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev/'
+    # Codespace固定URLとlocalhost両対応
+    codespace_url = 'https://didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev/'
+    local_url = 'http://localhost:8000/'
+    # X-Forwarded-Hostがcodespaceならcodespace_url、なければlocalhost
+    forwarded_host = request.META.get('HTTP_X_FORWARDED_HOST')
+    if forwarded_host and 'didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev' in forwarded_host:
+        base_url = codespace_url
+    elif request.get_host().startswith('didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev'):
+        base_url = codespace_url
+    else:
+        base_url = local_url
     return Response({
         'users': base_url + 'api/users/?format=api',
         'teams': base_url + 'api/teams/?format=api',

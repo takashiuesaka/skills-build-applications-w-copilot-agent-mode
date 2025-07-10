@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-^34u(k!a8$t@@-bq@_n%g&8m4jqjhl6ir1@vl@rwe^s7z6j$49
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.app.github.dev',
+    'didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev',
+]
 
 
 # Application definition
