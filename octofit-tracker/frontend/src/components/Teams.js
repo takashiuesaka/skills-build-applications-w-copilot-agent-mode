@@ -4,7 +4,7 @@ function Teams() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch('https://didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev/api/teams')
+    fetch(`${process.env.REACT_APP_API_URL}/api/teams`)
       .then(res => res.json())
       .then(data => setTeams(data.results || []));
   }, []);

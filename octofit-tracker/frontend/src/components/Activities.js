@@ -6,7 +6,7 @@ function Activities() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev/api/activities/')
+    fetch(`${process.env.REACT_APP_API_URL}/api/activities/`)
       .then(res => {
         if (!res.ok) throw new Error(`API error: ${res.status}`);
         return res.json();

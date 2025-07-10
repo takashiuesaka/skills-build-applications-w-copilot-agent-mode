@@ -4,7 +4,7 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    fetch('https://didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev/api/leaderboard')
+    fetch(`${process.env.REACT_APP_API_URL}/api/leaderboard`)
       .then(res => res.json())
       .then(data => setLeaderboard(data.results || []));
   }, []);

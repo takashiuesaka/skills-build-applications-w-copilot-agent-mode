@@ -4,7 +4,7 @@ function Workouts() {
   const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-    fetch('https://didactic-zebra-5rj9qj5vpwr24j75-8000.app.github.dev/api/workouts')
+    fetch(`${process.env.REACT_APP_API_URL}/api/workouts`)
       .then(res => res.json())
       .then(data => setWorkouts(data.results || []));
   }, []);
